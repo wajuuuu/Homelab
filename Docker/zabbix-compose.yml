@@ -2,7 +2,7 @@ version: '1.0'
 
 services:
   postgresql-server:
-    image: postgres:latest
+    image: postgres:16.8
     container_name: postgresql-server
     restart: unless-stopped
     environment:
