@@ -57,9 +57,9 @@ services:
       - zabbix-server
     environment:
       ZBX_HOSTNAME: "Zabbix Server"
-      ZBX_SERVER_HOST: zabbix.local
+      ZBX_SERVER_HOST: ${ZBX_SERVER_HOST}
       ZBX_SERVER_PORT: '10051'
-      ZBX_SERVER_ACTIVE: zabbix.local
+      ZBX_SERVER_ACTIVE: ${ZBX_SERVER_ACTIVE}
 
 volumes:
   postgresql-data:
