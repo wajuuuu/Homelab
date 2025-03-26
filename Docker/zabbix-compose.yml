@@ -50,7 +50,7 @@ services:
       - zabbix-web-data:/usr/share/zabbix
 
   zabbix-agent:
-    image: zabbix/zabbix-agent:latest
+    image: zabbix/zabbix-agent:ubuntu-7.0-latest
     container_name: zabbix-agent
     restart: unless-stopped
     depends_on:
