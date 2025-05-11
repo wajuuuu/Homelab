@@ -64,6 +64,7 @@ services:
       ZBX_SERVER_ACTIVE: ${ZBX_SERVER_ACTIVE}
 
   chromedriver:
+    container_name: chromedriver
     image: selenium/standalone-chrome:latest
     ports: 
       - "4444:4444"
