@@ -34,12 +34,12 @@ services:
     image: docker.io/library/redis:8
     restart: unless-stopped
     volumes:
-      - redisdata:/_paperless/redis-data
+      -  ${MEDIA_SHARE}/redisdata:/_paperless/redisdata
   db:
     image: docker.io/library/postgres:17
     restart: unless-stopped
     volumes:
-      - pgdata:/_paperless/postgresql/data
+      - ${MEDIA_SHARE}/pgdata:/_paperless/pgdata
     environment:
       POSTGRES_DB: paperless
       POSTGRES_USER: paperless
@@ -55,10 +55,10 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - data:/_paperless/data
-      - media:/_paperless/media
-      - ${MEDIA_SHARE}:/_paperless/export
-      - ${MEDIA_SHARE}:/_paperless/consume
+      - ${MEDIA_SHARE}/data:/_paperless/data
+      - ${MEDIA_SHARE}/media:/_paperless/media
+      - ${MEDIA_SHARE}/export:/_paperless/export
+      - ${MEDIA_SHARE}/consume:/_paperless/consume
     environment:
       PAPERLESS_REDIS: redis://broker:6379
       PAPERLESS_DBHOST: db
@@ -77,8 +77,3 @@ services:
   tika:
     image: docker.io/apache/tika:latest
     restart: unless-stopped
-volumes:
-  data: ${MEDIA_SHARE}
-  media: ${MEDIA_SHARE}
-  pgdata: ${MEDIA_SHARE}
-  redisdata: ${MEDIA_SHARE}
