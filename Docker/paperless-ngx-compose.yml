@@ -34,12 +34,12 @@ services:
     image: docker.io/library/redis:8
     restart: unless-stopped
     volumes:
-      -  ${MEDIA_SHARE}/redisdata:/_paperless/redisdata
+      -  ${MEDIA_SHARE}/_Docker/paperless/redisdata:redisdata
   db:
     image: docker.io/library/postgres:17
     restart: unless-stopped
     volumes:
-      - ${MEDIA_SHARE}/pgdata:/_paperless/pgdata
+      - ${MEDIA_SHARE}/_Docker/paperless-ngx/pgdata:pgdata
     environment:
       POSTGRES_DB: paperless
       POSTGRES_USER: paperless
@@ -55,10 +55,10 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ${MEDIA_SHARE}/data:/_paperless/data
-      - ${MEDIA_SHARE}/media:/_paperless/media
-      - ${MEDIA_SHARE}/export:/_paperless/export
-      - ${MEDIA_SHARE}/consume:/_paperless/consume
+      - ${MEDIA_SHARE}/_Docker/paperless-ngx/data:data
+      - ${MEDIA_SHARE}/_Docker/paperless-ngx/media:media
+      - ${MEDIA_SHARE}/_Docker/paperless-ngx/export:export
+      - ${MEDIA_SHARE}/_Docker/paperless-ngx/consume:consume
     environment:
       PAPERLESS_REDIS: redis://broker:6379
       PAPERLESS_DBHOST: db
