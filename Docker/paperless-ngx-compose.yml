@@ -55,10 +55,10 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ${MEDIA_SHARE}/_Docker/paperless/data:/usr/src/paperless/data
+      - data:/usr/src/paperless/data
       - ${MEDIA_SHARE}/_Docker/paperless-ngx/media:/usr/src/paperless/media
-      - ./export:/usr/src/paperless/export
-      - ./consume:/usr/src/paperless/consume
+      - ${MEDIA_SHARE}/_Docker/paperless-ngx/export:/usr/src/paperless/export
+      - ${MEDIA_SHARE}/_Docker/paperless-ngx/consume:/usr/src/paperless/consume
     environment:
       PAPERLESS_REDIS: redis://broker:6379
       PAPERLESS_DBHOST: db
