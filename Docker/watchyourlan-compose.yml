@@ -5,7 +5,7 @@ services:
     network_mode: "host"      
     restart: unless-stopped
     volumes:
-    - ~/.dockerdata/wyl:/data/WatchYourLAN
+    - ./data:/data/WatchYourLAN
     environment:
       TZ: Europe/Warsaw              
       IFACES: "ens19"
