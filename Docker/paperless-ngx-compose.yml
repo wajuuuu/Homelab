@@ -80,6 +80,3 @@ services:
     restart: unless-stopped
 volumes:
   data:
-  media:
-  pgdata:
-  redisdata:
