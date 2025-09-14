@@ -42,22 +42,22 @@ services:
     restart: unless-stopped
     
   #Radarr - used to find movies automatically
-  #radarr:
-    #image: lscr.io/linuxserver/radarr:latest
-    #container_name: radarr
-    #environment:
-      #- PUID=${PUID}
-      #- PGID=${GUID}
-      #- TZ=${TZ}
-    #volumes:
-      #- ${BASE_PATH}/radarr/config:/config
-      #- ${MEDIA_SHARE}/movies:/movies #Access to the entire share
-      #- ${MEDIA_SHARE}/downloads:/downloads #Access to the entire share
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=${PUID}
+      - PGID=${GUID}
+      - TZ=${TZ}
+    volumes:
+      - ${BASE_PATH}/radarr/config:/config
+      - ${MEDIA_SHARE}/movies:/movies #Access to the entire share
+      - ${MEDIA_SHARE}/downloads:/downloads #Access to the entire share
     #networks: #Does not connect to overseer if you use NPM
     #  - proxy
-    #ports:
-      #- 7878:7878
-    #restart: unless-stopped
+    ports:
+      - 7878:7878
+    restart: unless-stopped
     
   #Sonarr - used to find tv shows automatically
   sonarr:
@@ -76,37 +76,6 @@ services:
     ports:
       - 8989:8989
     restart: unless-stopped
-  
-  #Readarr - Used to download books
-  readarr:
-    image: lscr.io/linuxserver/readarr:develop
-    container_name: readarr
-    environment:
-      - PUID=${PUID}
-      - PGID=${GUID}
-      - TZ=${TZ}
-    volumes:
-      - ${BASE_PATH}/readarr/config:/config
-      - ${MEDIA_SHARE}/books:/books 
-
-    ports:
-      - 8787:8787
-    restart: unless-stopped
-    
-  #Lidarr - Used to download music 
-  #lidarr:
-    #image: lscr.io/linuxserver/lidarr:latest
-    #container_name: lidarr
-    #environment:
-      #- PUID=${PUID}
-      #- PGID=${GUID}
-      #- TZ=${TZ}
-    #volumes:
-      #- ${BASE_PATH}/lidarr/config:/config
-      #- ${MEDIA_SHARE}:/video
-    #ports:
-      #- 8686:8686
-    #restart: unless-stopped
     
   #Prowlarr - manages your Sonarr, Radarr and download client
   prowlarr:
